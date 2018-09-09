@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Meta Tags-->
+  <meta charset="UTF-8"/>
+  <meta name="description" content="Wild West JavaScript Game"/>
+  <meta name="keywords" content="HTML,CSS,JavaScript, jQuery, Game"/>
+  <meta name="author" content="Merima Dzinovic"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Page Title-->
+  <title>Wild West | JavaScript Game</title>
+  <link rel="icon" href="img/star.png">
+  <!-- Latest compiled and minified CSS-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+  <!-- jQuery library-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Popper JS-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <!-- Latest compiled JavaScript-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Concert+One|Rubik+Mono+One|Parisienne" rel="stylesheet">
+  <!-- customize Style-->
+  <link rel="stylesheet" href="css/style.css"/>  
+</head>
+<body>
+
+  <!-- Header -->
+
+  <!-- Navigation Bar -->
+  <nav class="container-fluid">
+    <div class="col-sm-12 text-center">
+      <img src="img/star.png" alt="star"/>
+      <h1 class="brand-logo text-center">Wild West</h1>
+    </div>
+    <div class="col-sm-12 text-center">
+      <button type="button" data-target="rules" class="modal-trigger" id="button">
+          <i class="fa fa-cogs" aria-hidden="true"></i> Rules</button>
+      <button type="button"id="button"><a href="index.html">Restart</a> 
+          <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+    <!-- Players Information Containers -->
+    <div class="row">
+      <div class="col-sm-6 col-xs-6">
+        <div class="container text-center cowboy">
+        <img src="img/cowboyImg.png" alt="cowboy"/>
+        <h5><i class="fa fa-heartbeat" aria-hidden="true" id="health"></i>
+          <span id="cbHealth">100%</span>
+        </h5>
+        <h5><i class="fa fa-bolt" aria-hidden="true" id="power"></i>
+          <span id="cbPower">10%</span>
+        </h5>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-6">
+        <div class="container text-center bandit">
+          <img src="img/banditImg.png" alt="bandit">
+          <h5><i class="fa fa-heartbeat" aria-hidden="true" id="health"></i>
+            <span id="bHealth">100%</span>
+          </h5>
+          <h5><i class="fa fa-bolt" aria-hidden="true" id="power"></i>
+            <span id="bPower">10%</span>
+          </h5>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- The Map of Game -->
+  <div id="gameContainer">
+    <div id="stage"></div>
+  </div>
+  
+  <!-- Modals -->
+
+  <!-- Game Instructions Modal -->
+  <div id="rules" class="modal">
+    <div class="modal-content">
+      <h1 class="text-center text-uppercase">Game Rules</h1>
+      <div class="row">
+        <div class="col-sm-6 col-xs-12 text-center">
+          <h2>Map</h2>
+          <p>The placement of the two players is randomly on the map when the game loads.</p>
+          <h2>Movements</h2>
+          <p>For each turn, a player can move from one to three boxes (horizontally or vertically) before ending their turn. They obviously can not pass through obstacles directly.</p>
+          <h2>Weapons</h2>
+          <p>On the map, a weapons will be placed also randomly and can be collected by players who pass through. If a player passes over a box containing a weapon, they leave their current weapon on site and replace it with the new one.</p>
+          <h2>Fight!</h2>
+          <p>If players cross over adjacent squares (horizontally or vertically), a battle begins.</p>
+          <h6>During combat, the game works is as follows:</h6>
+          <ul>
+            <li>Each player attacks in turn</li>
+            <li>The damage depends on the player's weapon</li>
+            <li>The player can choose to attack or defend against the next shot</li>
+            <li>If the player chooses to defend themselves, they sustain 50% less damage than normal</li>
+            <li>When the life points of a player falls below 50% they can use drinks and regain +30% life points</li>
+            <li>As soon as the life points of a player falls to 0% they lose and the game is over</li>
+          </ul>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <h2 class="text-center">Game Objects</h2>
+          <hr/>
+          <div class="row">
+            <div class="col-lg-3 col-sm-6 col-xs-12 text-center">
+              <h4>Weapons and Damage</h4>
+              <img src="img/bullet.png" alt="bullet"/>
+              <p>Bullet - Power: <span>15%</span></p>
+              <img src="img/revolver.png" alt="revolver"/>
+              <p>Revolver - Power: <span>20%</span></p>
+              <img src="img/bomb.png" alt="bomb"/>
+              <p>Bomb - Power: <span>25%</span></p>
+              <img src="img/money.png" alt="money"/>
+              <p>Money - Power: <span>30%</span></p>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-xs-12 text-center">
+              <h4>Players</h4>
+              <img src="img/cowboy.png" alt="cowboy"/>
+              <p>Cowboy</p>
+              <img src="img/cowboyDead.png" alt="cowboy dead"/>
+              <p>Cowboy Dead</p>
+              <img src="img/bandit.png" alt="bandit"/>
+              <p>Bandit</p>
+              <img src="img/banditDead.png" alt="bandit dead"/>
+              <p>Bandit Dead</p>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-xs-12 text-center">
+              <h4>Drinks</h4>
+              <img src="img/beer.png" alt="beer"/>
+              <p>Beer</p>
+              <img src="img/whisky.png" alt="whisky"/>
+              <p>Whisky</p>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-xs-12 text-center">
+              <h4>Blockade</h4>
+              <img src="img/cactus.png" alt="cactus"/>
+              <p>Cactus</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-action modal-close">Close</button>
+    </div>
+  </div>
+
+  <!-- Fight Modal -->
+  <div id="fight" class="modal">
+    <div class="modal-content">
+      <h2 class="text-center text-uppercase">You have been attacked!</h2>
+      <p class="text-center">If you defend yourself, you will save a 50% of the damage, but you can't counter-attack.
+        <br/>Whether you want to defend or attack?</p>
+    </div>
+    <div class="modal-footer">
+        <button id="defense" class="modal-action modal-close" onClick="(function(){
+          turn.defend = true;
+          fight();
+          return false;
+      })();return false;">Defend</button>
+        <button id="attack" class="modal-action modal-close" onClick="(function(){
+          turn.defend = false;
+          fight();
+          return false;
+      })();return false;">Attack</button>
+    </div>
+  </div>
+
+  <!-- Game Over Modal -->
+  <div id="gameOver" class="modal">
+    <div class="modal-content">
+      <h2 class="text-center text-uppercase">Game Over!</h2>
+      <p class="text-center">Would you like to play again?</p>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-action modal-close"><a href="index.html">Replay</a></button>
+      <button class="modal-action modal-close">Exit</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <h4 class="text-center">Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by Merima 
+      <a href="https://github.com/merimadzc" target="_blank">
+        <i class="fa fa-github"></i>
+      </a>
+    </h4>
+  </footer>
+  
+  <!--  Scripts -->
+
+  <!-- Script for Modals -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <!-- Game Script -->
+  <script src="js/script.js"></script>
+
+</body>
+</html>
