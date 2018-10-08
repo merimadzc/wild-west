@@ -28,12 +28,17 @@
 <body>
 
   <!-- Header -->
-
   <!-- Navigation Bar -->
   <nav class="container-fluid">
     <div class="col-sm-12 text-center">
       <img src="img/star.png" alt="star"/>
       <h1 class="brand-logo text-center">Wild West</h1>
+      <audio id="gameAudio">
+        <source src="audio/game.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <button onclick="playAudio()" type="button" id="sound-btn"><i class="fa fa-play"></i></button>
+      <button onclick="pauseAudio()" type="button" id="sound-btn"><i class="fa fa-stop"></i></button> 
     </div>
     <div class="col-sm-12 text-center">
       <button type="button" data-target="rules" class="modal-trigger" id="button">
@@ -42,6 +47,7 @@
           <i class="fa fa-refresh" aria-hidden="true"></i>
       </button>
     </div>
+
     <!-- Players Information Containers -->
     <div class="row">
       <div class="col-sm-6 col-xs-6">
@@ -75,7 +81,6 @@
   </div>
   
   <!-- Modals -->
-
   <!-- Game Instructions Modal -->
   <div id="rules" class="modal">
     <div class="modal-content">
@@ -190,7 +195,6 @@
   </footer>
   
   <!--  Scripts -->
-
   <!-- Script for Modals -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <!-- Game Script -->

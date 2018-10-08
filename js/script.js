@@ -1,4 +1,8 @@
 /* Game variables */
+var sound;
+var stage;
+var map;
+var gameObjects;
 var background = 0;
 var cactus = 1;
 var bullet = 2;
@@ -16,12 +20,26 @@ var banditPower = [10];
 var cowboyPlayer;
 var banditPlayer;
 
+/* Audio Script */
+sound = document.getElementById('gameAudio');
+
+/* Function for playing audio */
+function playAudio() {
+  sound.play();
+}
+
+/* Function for stoping audio */
+function pauseAudio() { 
+    sound.pause(); 
+} 
+
 /* Map Script */
-var stage = document.querySelector('#stage');
+stage = document.querySelector('#stage');
 stage.addEventListener('click', movePlayer);
 window.addEventListener('resize', render);
 
-var map = [
+/* Load Map */
+map = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -33,7 +51,9 @@ var map = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
-var gameObjects = [
+
+/* Load Game Objects */
+gameObjects = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -45,10 +65,12 @@ var gameObjects = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
+
 var size = function() {
   var stageSize1 = getComputedStyle(stage);
   return parseInt(stageSize1.width) / 10;
 };
+
 var rows = map.length;
 var columns = map[0].length;
 var turn = {
@@ -718,7 +740,7 @@ function movePlayer(event) {
     }
   }
 
-  /* Horizontal movement*/
+  /* Horizontal Movements */
   if (
     directionColumn > playerColumn - 4 &&
     directionRow == playerRow &&
@@ -858,7 +880,6 @@ function movePlayer(event) {
         break;
     }
   } else {
-
     switch (validDirection) {
       case up1:
         gameObjects[banditRow][banditColumn] = 0;
@@ -946,7 +967,6 @@ function movePlayer(event) {
         break;
     }
   }
-
   renderObjects();
 }
 
@@ -985,8 +1005,10 @@ function fight() {
   render();
 }
 
-/* Modals Script */
-$(document).ready(function() {
+/* Modals Script with jQuery*/
+$(function() {
+
+  /* Rules Modal Script */
   $('#rules').modal({
     dismissible: true,
     opacity: 0.5,
@@ -995,6 +1017,8 @@ $(document).ready(function() {
     startingTop: '0%',
     endingTop: '0%'
   });
+
+  /* Fight Modal Script */
   $('#fight').modal({
     dismissible: false,
     opacity: 0.5,
@@ -1003,6 +1027,8 @@ $(document).ready(function() {
     startingTop: '4%',
     endingTop: '10%'
   });
+
+  /* Game Over Modal Script */
   $('#gameOver').modal({
     dismissible: true,
     opacity: 0.5,
