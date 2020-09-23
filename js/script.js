@@ -20,17 +20,21 @@ var banditPower = [10];
 var cowboyPlayer;
 var banditPlayer;
 
-/* Audio Script */
-sound = document.getElementById('gameAudio');
+var audioID = "Song";
 
-/* Function for playing audio */
+/* Load Audio for Game */
+function loadAudio() {
+  createjs.Sound.registerSound("audio/game.mp3", audioID);
+}
+
+/* Play Audio Function */
 function playAudio() {
-  sound.play();
+  createjs.Sound.play(audioID);
 }
 
 /* Function for stoping audio */
-function pauseAudio() { 
-    sound.pause(); 
+function stopAudio() { 
+  createjs.Sound.stop();
 } 
 
 /* Map Script */

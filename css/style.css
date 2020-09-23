@@ -78,6 +78,7 @@ button#sound-btn {
 /* Players Containers Style */
 .container {
   margin-top: 20px;
+  padding: 9px 29px;
   border-radius: 5px;
   box-shadow: -15px 20px 15px rgba(0, 0, 0, 0.3); 
   background-color: rgba(235, 235, 235, 0.9);
@@ -100,12 +101,12 @@ h5 #health {
 }
 .container img {
   float: left;
-  margin-top: 3px;
 }
 span {
   animation: blink 1s linear infinite;
   font-family: 'Concert One', cursive;
 }
+
 @keyframes blink{
   0% {
     opacity: 0;
